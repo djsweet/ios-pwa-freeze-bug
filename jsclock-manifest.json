@@ -1,0 +1,8 @@
+{
+    "short_name": "Clock",
+    "name": "It's a clock, in JavaScript!",
+    "start_url": "./jsclock.html",
+    "display": "standalone",
+    "theme_color": "#000000",
+    "background_color": "#ffffff"
+}

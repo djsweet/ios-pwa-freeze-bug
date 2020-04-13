@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>It's a clock, in JavaScript</title>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <link rel="manifest" href="./jsclock-manifest.json" />
+    </head>
+    <body>
+        <div style="position: absolute; top: 0; left: 0; height: 100%; width: 100%; display: flex; align-items: center; justify-content: center">
+            <div style="font-size: 64px; font-family: sans-serif; pointer-events: none" id="clock-holder">
+                wait
+            </div>
+        </div>
+    </body>
+    <script>
+        const clockHolder = document.getElementById("clock-holder");
+        if (navigator.serviceWorker === undefined) {
+            clockHolder.innerHTML = "No service worker?";
+        } else {
+            setInterval(() => {
+                const now = new Date();
+                clockHolder.innerHTML = now.toLocaleString();
+            }, 100);
+            document.addEventListener("visibilitychange", () => {
+                console.log("Document visibility changed", document.hidden, new Date());
+                if (navigator.serviceWorker.controller) {
+                    navigator.serviceWorker.controller.postMessage(document.hidden ? "screenoff" : "screenon");
+                } else {
+                    console.log("No controller on navigator.serviceWorker");
+                }
+            });
+            navigator.serviceWorker.register("./jsclock-sw.js")
+                .then(() => { console.log("Registered service worker"); })
+                .catch(e => { console.error("Could not register service worker", e) });
+        }
+    </script>
+</html>

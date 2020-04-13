@@ -1,7 +1,7 @@
 PWAs on iOS Freeze While Multitasking
 =====================================
 
-If you use Service Workers on PWAs on iOS, your app _will_ freeze when multitasking.
+If you use Service Workers on PWAs on iOS 13.x, your app _will_ freeze when multitasking.
 
 The Issue
 ---------

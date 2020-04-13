@@ -33,12 +33,12 @@ Getting More Information
 This is a very noisy app in terms of console logging. You should establish a Remote Debugging
 session for both the page context and the Service Worker:
 
-FIXME: picture
+![Choosing Sources](https://user-images.githubusercontent.com/9657980/79153853-67918800-7d83-11ea-84af-fcae0778bdea.png)
 
 You should see the Service Worker logging once a second. If you switch apps or go back to the
 Home Screen, you will see something like this:
 
-FIXME: picture
+![Console When Switching](https://user-images.githubusercontent.com/9657980/79153912-809a3900-7d83-11ea-87c4-79fb3d0e40f8.png)
 
 You will reliably see the log message `Document visibility changed - true`, which means that 
 the freezing does not occur while suspending the app. It occurs when attempting to resume the app.
@@ -46,7 +46,7 @@ the freezing does not occur while suspending the app. It occurs when attempting 
 The Service Worker will begin logging at an interval of 16ms when the visibilty status of the
 app becomes hidden. That will look something like this:
 
-FIXME: picture
+![Service Worker When Switching](https://user-images.githubusercontent.com/9657980/79153940-927bdc00-7d83-11ea-99eb-5392e0120713.png)
 
 However, I could not determine any correlations between timing and this bug, at least from the
 standpoint of a JavaScript execution context.
